@@ -22,6 +22,7 @@ import com.example.lap.popular_movies_stage1.utalities.NetworkUtality;
 import java.net.URL;
 
 
+   
     public class MainActivity extends AppCompatActivity implements MoviesAdapter.MovieAdapterOnClickHandler {
 
         private RecyclerView mRecyclerView;
@@ -31,12 +32,15 @@ import java.net.URL;
         @BindView(R.id.tv_connection_error) TextView mConnctionError ;
         @BindView(R.id.Loading_Page) ProgressBar mLoadingPage;
 
+
+
         String query = "popular";
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
+
 
             mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_movies);
 
@@ -79,11 +83,13 @@ import java.net.URL;
         }
 
         private void showJsonDataResults() {
-           mConnctionError.setVisibility(View.INVISIBLE);
+            mConnctionError = (TextView) findViewById(R.id.tv_connection_error);
+            mConnctionError.setVisibility(View.INVISIBLE);
             mRecyclerView.setVisibility(View.VISIBLE);
         }
 
         private void showErrorMessage() {
+            mConnctionError = (TextView) findViewById(R.id.tv_connection_error);
             mRecyclerView.setVisibility(View.INVISIBLE);
             mConnctionError.setVisibility(View.VISIBLE);
         }
@@ -92,6 +98,7 @@ import java.net.URL;
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
+                mLoadingPage = (ProgressBar) findViewById(R.id.Loading_Page);
                 mLoadingPage.setVisibility(View.VISIBLE);
             }
 
@@ -168,5 +175,3 @@ import java.net.URL;
         }
 
     }
-
-
